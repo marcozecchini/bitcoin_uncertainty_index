@@ -10,10 +10,6 @@ load_dotenv()
 # coinbase client
 client = Client("k8Cxj9k1VtbHuzPP", "Ukqdo6dYisEF1I0DBPRW0jnKtggcmV5m", api_version='YYYY-MM-DD')
 
-# Load credentials from json file
-with open("twitter_credentials.json", "r") as file:
-    creds = json.load(file)
-
 # Instantiate an object
 python_tweets = Twython(os.getenv('CONSUMER_KEY'), os.getenv('CONSUMER_SECRET'))
 
