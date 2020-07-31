@@ -21,6 +21,8 @@ query = {'q': 'algorand',
         }
 currency = 'ALGO'
 
+result_file = 'my_result_'+str(time.time())+'.csv'
+
 # iteration index
 index = 0
 
@@ -57,7 +59,7 @@ def retrieve_and_save(index,df):
 
     # write ONLY new ones
     res = df[df['index'] == index]
-    res.to_csv('my_result.csv', mode='a', header=False, columns=['index', 'user','date','text', 'price'])
+    res.to_csv(result_file, mode='a', header=False, columns=['index', 'user','date','text', 'price'])
 
     # drop old tweets - posso anche usare timespan
     Dindex = DELETE_WINDOW_IN_SECONDS / 60*WAIT_WINDOW_IN_WINDOW
@@ -84,9 +86,12 @@ if __name__ == "__main__":
     df.sort_values(by='date', inplace=True, ascending=True)
     df['index'] = [index for _ in range(0, len(df))]
     df['price'] = [price.rates.EUR for _ in range(0, len(df))]
-    df.to_csv('my_result.csv', columns=['index', 'user','date','text', 'price'])
+    df.to_csv(result_file, columns=['index', 'user','date','text', 'price'])
 
     while True:
         time.sleep(WAIT_WINDOW_IN_WINDOW * 60)
         index += 1
-        df = retrieve_and_save(index, df)
+        try: 
+            df = retrieve_and_save(index, df)
+        except:
+            print("Something went wrong")
