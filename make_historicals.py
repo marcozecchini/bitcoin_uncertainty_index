@@ -3,6 +3,9 @@ import pandas as pd
 import json
 import time
 from coinbase.wallet.client import Client
+from dotenv import load_dotenv
+import os 
+load_dotenv()
 
 # coinbase client
 client = Client("k8Cxj9k1VtbHuzPP", "Ukqdo6dYisEF1I0DBPRW0jnKtggcmV5m", api_version='YYYY-MM-DD')
@@ -12,7 +15,7 @@ with open("twitter_credentials.json", "r") as file:
     creds = json.load(file)
 
 # Instantiate an object
-python_tweets = Twython(creds['CONSUMER_KEY'], creds['CONSUMER_SECRET'])
+python_tweets = Twython(os.getenv('CONSUMER_KEY'), os.getenv('CONSUMER_SECRET'))
 
 # Create our query
 query = {'q': 'algorand',

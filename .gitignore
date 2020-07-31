@@ -1,3 +1,4 @@
 .vscode/
 my_result.csv
 twitter_credentials.json
+.env
