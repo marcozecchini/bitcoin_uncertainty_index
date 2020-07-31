@@ -29,7 +29,7 @@ index = 0
 currency_code = 'EUR'  # can also use EUR, CAD, etc.
 
 # time interval window
-WAIT_WINDOW_IN_WINDOW = 20
+WAIT_WINDOW_IN_WINDOW = 5
 
 DELETE_WINDOW_IN_SECONDS = 86400 # ONE day
 
